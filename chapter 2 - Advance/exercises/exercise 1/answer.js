@@ -9,7 +9,7 @@ const MobileComponent = () => (
   </div>
 );
 
-const switchMobileWeb = (Web, Mobile, breakpoint = 576) => (props) => {
+const switchMobileWeb = (Web, Mobile, breakpoint = 576) => {
   class SwitchComponent extends Component {
     state = { isMobile: false };
 
@@ -36,7 +36,7 @@ const switchMobileWeb = (Web, Mobile, breakpoint = 576) => (props) => {
     }
   }
 
-  return <SwitchComponent {...props} />;
+  return SwitchComponent;
 };
 
 const App = () => {
