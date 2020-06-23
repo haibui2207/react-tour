@@ -12,21 +12,23 @@ const MobileComponent = () => (
 const switchMobileWeb = (Web, Mobile, breakpoint = 576) => (props) => {
   const [isMobile, setIsMobile] = useState(false);
 
-  const eventHandler = () => {
-    if (window.innerWidth <= breakpoint && !isMobile) {
+  const handleResize = () => {
+    const currentWidth = window.innerWidth;
+    if (currentWidth <= breakpoint && !isMobile) {
       setIsMobile(true);
-    } else if (window.innerWidth > breakpoint && isMobile) {
+    } else if (currentWidth > breakpoint && isMobile) {
       setIsMobile(false);
     }
   };
 
   useEffect(() => {
-    window.addEventListener('resize', eventHandler);
+    handleResize();
+    window.addEventListener('resize', handleResize);
 
     return () => {
-      window.removeEventListener('resize', eventHandler);
+      window.removeEventListener('resize', handleResize);
     };
-  }, [window.innerWidth]);
+  }, [isMobile]);
 
   return isMobile ? <Mobile {...props} /> : <Web {...props} />;
 };

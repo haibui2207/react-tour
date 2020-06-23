@@ -14,6 +14,7 @@ const switchMobileWeb = (Web, Mobile, breakpoint = 576) => {
     state = { isMobile: false };
 
     componentDidMount() {
+      this.eventHandler();
       window.addEventListener('resize', this.eventHandler);
     }
 
@@ -22,9 +23,12 @@ const switchMobileWeb = (Web, Mobile, breakpoint = 576) => {
     }
 
     eventHandler = () => {
-      if (window.innerWidth <= breakpoint && !this.state.isMobile) {
+      const currentWidth = window.innerWidth;
+      const { isMobile } = this.state;
+
+      if (currentWidth <= breakpoint && !isMobile) {
         this.setState({ isMobile: true });
-      } else if (window.innerWidth > breakpoint && this.state.isMobile) {
+      } else if (currentWidth > breakpoint && isMobile) {
         this.setState({ isMobile: false });
       }
     };
